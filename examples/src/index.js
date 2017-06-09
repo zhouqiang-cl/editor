@@ -40,21 +40,25 @@ import 'ory-editor-plugins-parallax-background/lib/index.css'
 // The divider plugin
 import divider from 'ory-editor-plugins-divider'
 
+import demo from './demo'
+
 // Renders json state to html, can be used on server and client side
 import { HTMLRenderer } from 'ory-editor-renderer'
 
 // The content state
 import content from './content.js'
+// const content = createEmptyState()
 import './styles.css'
 
 // Define which plugins we want to use (all of the above)
 const plugins = {
-  content: [slate(), spacer, image, video, divider],
+  content: [slate(), spacer, image, video, divider, demo],
   layout: [parallax({ defaultPlugin: slate() })]
 }
 
 const editor = new Editor({
   plugins: plugins,
+  defaultPlugin:slate(),
   // pass the content states
   editables: [
     ...content,
@@ -70,11 +74,11 @@ for (const element of elements) {
     <Editable
       editor={editor}
       id={element.dataset.id}
-      // onChange={(state) => {
-      //   if (element.dataset.id === '1') {
-      //     console.log(state)
-      //   }
-      // }}
+      onChange={(state) => {
+        if(editor.store.getState().display.mode == "save") {
+          console.log(state)
+        }
+      }}
     />
   ), element)
 }
@@ -87,8 +91,8 @@ ReactDOM.render((
     <Toolbar editor={editor} />
   </div>
 ), document.getElementById('controls'))
-
+// console.log("content",content)
 // Render as beautified mark up (html)
-ReactDOM.render(<HTMLRenderer state={content[0]} plugins={plugins} />, document.getElementById('editable-static'))
+// ReactDOM.render(<HTMLRenderer state={content} plugins={plugins} />, document.getElementById('editable-static'))
 
-editor.trigger.editable.add({ id: '10', cells: [] })
+// editor.trigger.editable.add({ id: '10', cells: [] })
