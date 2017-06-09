@@ -10,7 +10,7 @@ import {
 } from '../../../helper/shouldComponentUpdate'
 import Row from '../../Row'
 import { updateCellLayout } from '../../../actions/cell'
-import { isEditMode, isPreviewMode } from '../../../selector/display'
+import { isEditMode, isPreviewMode, isSaveMode } from '../../../selector/display'
 
 import type { ComponetizedCell } from '../../../types/editable'
 
@@ -76,10 +76,10 @@ class Layout extends React.Component {
       ancestors = [],
       updateCellLayout,
       isEditMode,
-      isPreviewMode
+      isPreviewMode,
+      isSaveMode
     }: ComponetizedCell = this.props
     const { focusCell, blurCell } = this.props
-
     let focusProps
     if (!isPreviewMode) {
       focusProps = {
@@ -129,7 +129,7 @@ class Layout extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({ isEditMode, isPreviewMode })
+const mapStateToProps = createStructuredSelector({ isEditMode, isPreviewMode,isSaveMode })
 
 const mapDispatchToProps = (dispatch: Function, { id }: ComponetizedCell) =>
   bindActionCreators(

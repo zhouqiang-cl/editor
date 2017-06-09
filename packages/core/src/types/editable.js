@@ -74,6 +74,7 @@ export type ComponetizedCell = {
   isEditMode: boolean,
   isLayoutMode: boolean,
   isPreviewMode: boolean,
+  isSaveMode: boolean,
 
   steps: number,
   rowHeight: number,
@@ -144,6 +145,7 @@ export type ComponetizedRow = {
   isEditMode: boolean,
   isLayoutMode: boolean,
   isPreviewMode: boolean,
+  isSaveMode: boolean,
 
   clearHover(): void,
   cancelCellDrag(drag: string): void,
@@ -171,6 +173,7 @@ export type EditableComponentState = {
   isEditMode: boolean,
   isLayoutMode: boolean,
   isPreviewMode: boolean,
+  isSaveMode: boolean,
   defaultPlugin: any,
 
   blurAllCells(): void,

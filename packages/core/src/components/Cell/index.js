@@ -10,6 +10,7 @@ import { shouldPureComponentUpdate } from '../../helper/shouldComponentUpdate'
 import { editableConfig, node, purifiedNode } from '../../selector/editable'
 import {
   isPreviewMode,
+  isSaveMode,
   isEditMode,
   isResizeMode,
   isInsertMode,
@@ -23,10 +24,11 @@ import type { ComponetizedCell } from '../../types/editable'
 const gridClass = ({
   node: { size },
   isPreviewMode,
+  isSaveMode,
   isEditMode
 }: ComponetizedCell): string => {
-  if (isPreviewMode || isEditMode) {
-    return `ory-cell-${isPreviewMode || isEditMode ? 'sm' : 'xs'}-${size || 12} ory-cell-xs-12`
+  if (isPreviewMode || isSaveMode || isEditMode) {
+    return `ory-cell-${isPreviewMode || isSaveMode || isEditMode ? 'sm' : 'xs'}-${size || 12} ory-cell-xs-12`
   }
 
   return `ory-cell-xs-${size || 12}`
@@ -50,10 +52,11 @@ class Cell extends Component {
       updateDimensions,
       isResizeMode,
       isEditMode,
+      isPreviewMode,
+      isSaveMode,
       node: { inline, resizable, hasInlineNeighbour, focused },
       isLayoutMode
     } = this.props
-
     return (
       <div
         className={classNames('ory-cell', gridClass(this.props), {
@@ -87,6 +90,7 @@ class Cell extends Component {
 
 const mapStateToProps = createStructuredSelector({
   isPreviewMode,
+  isSaveMode,
   isEditMode,
   isResizeMode,
   // required by sub-components

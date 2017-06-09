@@ -12,6 +12,7 @@ import {
   isEditMode,
   isLayoutMode,
   isPreviewMode,
+  isSaveMode,
   isInsertMode,
   isResizeMode
 } from 'ory-editor-core/lib/selector/display'
@@ -37,7 +38,6 @@ const target = {
       // If the item drop occurred deeper down the tree, don't do anything
       return
     }
-
     props.removeCell(item.id)
   }
 }
@@ -89,6 +89,7 @@ const mapStateToProps = createStructuredSelector({
   isEditMode,
   isLayoutMode,
   isPreviewMode,
+  isSaveMode,
   isInsertMode,
   isResizeMode
 })

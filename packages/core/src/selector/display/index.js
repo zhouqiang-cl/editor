@@ -4,7 +4,8 @@ import {
   DISPLAY_MODE_LAYOUT,
   DISPLAY_MODE_PREVIEW,
   DISPLAY_MODE_INSERT,
-  DISPLAY_MODE_RESIZING
+  DISPLAY_MODE_RESIZING,
+  DISPLAY_MODE_SAVE
 } from '../../actions/display'
 
 import type { Display } from '../../types/display'
@@ -14,6 +15,11 @@ export const isPreviewMode = ({
 }: {
   display: Display
 }): boolean => mode === DISPLAY_MODE_PREVIEW
+export const isSaveMode = ({
+  display: { mode }
+}: {
+  display: Display
+}): boolean => mode === DISPLAY_MODE_SAVE
 export const isLayoutMode = ({
   display: { mode }
 }: {

@@ -17,12 +17,8 @@ class Editable extends Component {
       throw new Error('The state must have an unique id')
     }
 
-    this.unsubscribe = this.props.editor.store.subscribe(this.onChange)
+    this.props.editor.store.subscribe(this.onChange)
     this.previousState = null
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate

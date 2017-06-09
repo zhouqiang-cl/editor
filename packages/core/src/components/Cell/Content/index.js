@@ -12,6 +12,7 @@ import {
   isEditMode,
   isLayoutMode,
   isPreviewMode,
+  isSaveMode,
   isInsertMode,
   isResizeMode
 } from '../../../selector/display'
@@ -73,6 +74,7 @@ class Content extends Component {
       isInsertMode,
       isResizeMode,
       isPreviewMode,
+      isSaveMode,
       isEditMode,
       editable,
       id,
@@ -96,6 +98,7 @@ class Content extends Component {
       }
     }
 
+
     return (
       <div
         {...focusProps}
@@ -118,6 +121,7 @@ class Content extends Component {
           isInsertMode={isInsertMode}
           isResizeMode={isResizeMode}
           isPreviewMode={isPreviewMode}
+          isSaveMode={isSaveMode}
           isEditMode={isEditMode}
           isLayoutMode={isLayoutMode}
         />
@@ -130,6 +134,7 @@ const mapStateToProps = createStructuredSelector({
   isEditMode,
   isLayoutMode,
   isPreviewMode,
+  isSaveMode,
   isInsertMode,
   isResizeMode
 })

@@ -39,7 +39,8 @@ import {
   editMode,
   previewMode,
   layoutMode,
-  resizeMode
+  resizeMode,
+  saveMode
 } from './display'
 
 export const actions = dispatch => ({
@@ -84,6 +85,7 @@ export const actions = dispatch => ({
     insert: (...args) => dispatch(insertMode(...args)),
     edit: (...args) => dispatch(editMode(...args)),
     preview: (...args) => dispatch(previewMode(...args)),
+    save: (...args) => dispatch(saveMode(...args)),
     layout: (...args) => dispatch(layoutMode(...args)),
     resize: (...args) => dispatch(resizeMode(...args))
   },

@@ -8,6 +8,7 @@ export const DISPLAY_MODE_LAYOUT = 'layout'
 export const DISPLAY_MODE_EDIT = 'edit'
 export const DISPLAY_MODE_INSERT = 'insert'
 export const DISPLAY_MODE_RESIZING = 'resizing'
+export const DISPLAY_MODE_SAVE = 'save'
 export const DEFAULT_DISPLAY_MODE = DISPLAY_MODE_PREVIEW
 
 const setDisplayMode = (
@@ -34,6 +35,8 @@ export const editMode = setDisplayMode(DISPLAY_MODE_EDIT)
  * Dispatch to switch to preview display mode.
  */
 export const previewMode = setDisplayMode(DISPLAY_MODE_PREVIEW)
+
+export const saveMode = setDisplayMode(DISPLAY_MODE_SAVE)
 
 /**
  * Dispatch to switch to layout display mode.
