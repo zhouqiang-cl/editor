@@ -41,47 +41,13 @@ window.doGet = function(url, params) {
 }
 
 
-window.doPost = function(url, params) {
+export function doPost(url, params) {
     let param = params;
-    param.user_name = window.user_name;
     if (typeof params !== 'string')
         param = JSON.stringify(params);
     param = encodeURIComponent(param);
     const content = {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            'Accept': 'application/json, text/plain, */*'
-        },
-        body: "data=" + param
-    };
-    return doRequest(url, content)
-}
-
-window.doPut = function(url, params) {
-    let param = params;
-    param.user_name = window.user_name;
-    if (typeof params !== 'string')
-        param = JSON.stringify(params);
-    param = encodeURIComponent(param);
-    const content = {
-        method: 'PUT',
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            'Accept': 'application/json, text/plain, */*'
-        },
-        body: "data=" + param
-    };
-    return doRequest(url, content)
-}
-window.doDelete = function(url, params) {
-    let param = params;
-    param.user_name = window.user_name;
-    if (typeof params !== 'string')
-        param = JSON.stringify(params);
-    param = encodeURIComponent(param);
-    const content = {
-        method: 'DELETE',
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             'Accept': 'application/json, text/plain, */*'

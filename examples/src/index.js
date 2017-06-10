@@ -14,6 +14,9 @@ import 'ory-editor-core/lib/index.css' // we also want to load the stylesheets
 import { Trash, DisplayModeToggle, Toolbar } from 'ory-editor-ui'
 import 'ory-editor-ui/lib/index.css'
 
+import TextField from 'material-ui/TextField'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 // react-tap-event-plugin is required for material-ui which is used by ory-editor-ui
 require('react-tap-event-plugin')()
 
@@ -40,7 +43,7 @@ import 'ory-editor-plugins-parallax-background/lib/index.css'
 // The divider plugin
 import divider from 'ory-editor-plugins-divider'
 
-import demo from './demo'
+// import demo from './demo'
 
 // Renders json state to html, can be used on server and client side
 import { HTMLRenderer } from 'ory-editor-renderer'
@@ -49,10 +52,17 @@ import { HTMLRenderer } from 'ory-editor-renderer'
 import content from './content.js'
 // const content = createEmptyState()
 import './styles.css'
+import { createArticle } from './backend'
+// import { doPost } from "./extend"
+
+// function createArticle(url, params) {
+    // console.log(params)
+    // doPost("localhost:8000/api/v1","xx")
+// }
 
 // Define which plugins we want to use (all of the above)
 const plugins = {
-  content: [slate(), spacer, image, video, divider, demo],
+  content: [slate(), spacer, image, video, divider],
   layout: [parallax({ defaultPlugin: slate() })]
 }
 
@@ -67,6 +77,11 @@ const editor = new Editor({
   ],
 })
 
+// ReactDOM.render((
+//     <TextField
+//       hintText="Hint Text"
+//       />
+// ), document.getElementById('title'))
 // Render the editables - the areas that are editable
 const elements = document.querySelectorAll('.editable')
 for (const element of elements) {
@@ -76,14 +91,14 @@ for (const element of elements) {
       id={element.dataset.id}
       onChange={(state) => {
         if(editor.store.getState().display.mode == "save") {
-          console.log(state)
+          const title = document.getElementById("input_title").value
+          createArticle(title,JSON.stringify(state))
         }
       }}
     />
   ), element)
 }
 
-// Render the ui controls, you could implement your own here, of course.
 ReactDOM.render((
   <div>
     <Trash editor={editor} />
@@ -91,8 +106,11 @@ ReactDOM.render((
     <Toolbar editor={editor} />
   </div>
 ), document.getElementById('controls'))
-// console.log("content",content)
-// Render as beautified mark up (html)
-// ReactDOM.render(<HTMLRenderer state={content} plugins={plugins} />, document.getElementById('editable-static'))
 
-// editor.trigger.editable.add({ id: '10', cells: [] })
+ReactDOM.render((
+  <MuiThemeProvider>
+    <TextField
+      hintText="Input Title"
+      id="input_title"/>
+  </MuiThemeProvider>
+), document.getElementById('title'))

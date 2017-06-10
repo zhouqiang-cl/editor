@@ -99,3 +99,10 @@ nav ul li a:active {
   color: #aaa;
   text-decoration: none;
 }
+
+#title {
+  /*float: center;*/
+}
+.title {
+  text-align:center;
+}
