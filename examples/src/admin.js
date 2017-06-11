@@ -45,10 +45,12 @@ import content from './content.js'
 import './styles.css'
 import { createArticle } from './backend'
 
+import github from "./plugins"
+
 export default class Admin extends Component {
     componentDidMount(){
       const plugins = {
-        content: [slate(), spacer, image, video, divider],
+        content: [slate(), spacer, image, video, divider, github],
         layout: [parallax({ defaultPlugin: slate() })]
       }
 
@@ -94,7 +96,7 @@ export default class Admin extends Component {
     render () {
       return (
         <div>
-          <div class="title" style={{"text-align": "center"}}>
+          <div class="title" style={{ textAlign: "center"}}>
             <div id="title" >
             </div>
           </div>

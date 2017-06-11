@@ -55,9 +55,7 @@ export default class Article extends Component {
     const articleid=getQueryString("articleid")
     getArticle(articleid).success(
          data=> {
-             // const title="title";
              let content = JSON.parse(data)
-             // console.log(content)
              ReactDOM.render((
                 <HTMLRenderer state={content} plugins={plugins} />)
                 , document.getElementById('content'))
