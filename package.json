@@ -62,5 +62,8 @@
     "testPathIgnorePatterns": [
       "/examples/"
     ]
+  },
+  "dependencies": {
+    "react-router-dom": "^4.1.1"
   }
 }

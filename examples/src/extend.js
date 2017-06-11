@@ -29,7 +29,7 @@ var doRequest = function( url, content ){
     })
     return proxy;
 }
-window.doGet = function(url, params) {
+export function doGet(url, params) {
     url += `?user_name=${window.user_name}&`;
     if(params){
         for( var key in params){

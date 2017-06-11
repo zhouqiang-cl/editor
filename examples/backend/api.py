@@ -11,7 +11,14 @@ class Articles(tornado.web.RequestHandler):
     def get(self,page_id):
         if not page_id:
             raise Exception("Page Not Found")
-        self.finish(global_editor.get_page(page_id))
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Method", "*")
+        ret = {
+            "data":global_editor.get_page(page_id),
+            "error":0,
+            "message":""
+        }
+        self.finish(ret)
 
     def post(self):
         data = json.loads(self.get_argument("data"))

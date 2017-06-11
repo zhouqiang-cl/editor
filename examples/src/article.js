@@ -1,5 +1,5 @@
-import ReactDOM from 'react-dom'
 import React,{ Component }  from 'react'
+import ReactDOM from 'react-dom'
 import { HTMLRenderer } from 'ory-editor-renderer'
 
 if (process.env.NODE_ENV !== 'production' && process.env.REACT_APP_TRACE_UPDATES) {
@@ -7,6 +7,9 @@ if (process.env.NODE_ENV !== 'production' && process.env.REACT_APP_TRACE_UPDATES
   whyDidYouUpdate(React)
 }
 
+import { getArticle } from "./backend"
+import { getQueryString } from "./utils"
+// import { doGet } from "./extend"
 import 'ory-editor-core/lib/index.css' // we also want to load the stylesheets
 
 
@@ -39,7 +42,7 @@ import 'ory-editor-plugins-parallax-background/lib/index.css'
 import divider from 'ory-editor-plugins-divider'
 
 
-import content from './content.js'
+// import content from './content.js'
 import './styles.css'
 
 const plugins = {
@@ -49,6 +52,18 @@ const plugins = {
 
 export default class Article extends Component {
   render() {
-    return <HTMLRenderer state={content[0]} plugins={plugins} />
+    const articleid=getQueryString("articleid")
+    getArticle(articleid).success(
+         data=> {
+             // const title="title";
+             let content = JSON.parse(data)
+             // console.log(content)
+             ReactDOM.render((
+                <HTMLRenderer state={content} plugins={plugins} />)
+                , document.getElementById('content'))
+         })
+    return (
+            <div id="content"></div>
+        )
   }
 }
